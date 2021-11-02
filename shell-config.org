@@ -100,6 +100,9 @@ Surfshark alias to connect and disconnect.
 #+begin_src bash
 alias vcon='sudo surfshark-vpn attack'
 alias vdis='sudo surfshark-vpn down'
+alias vstat='surfshark-vpn status'
+alias vpn='sudo surfshark-vpn'
+alias vmult='sudo surfshark-vpn multi'
 #+end_src
 Alias to download a template for a .gitignore file.
 #+begin_src bash

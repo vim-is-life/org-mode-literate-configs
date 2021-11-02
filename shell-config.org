@@ -100,7 +100,7 @@ Surfshark alias to connect and disconnect.
 #+begin_src bash
 alias vcon='sudo surfshark-vpn attack'
 alias vdis='sudo surfshark-vpn down'
-alias vstat='surfshark-vpn status'
+alias vstat='sudo surfshark-vpn status'
 alias vpn='sudo surfshark-vpn'
 alias vmult='sudo surfshark-vpn multi'
 #+end_src

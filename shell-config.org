@@ -272,3 +272,16 @@ neofetch
 autoload -U colors && colors	# Load colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 #+end_src
+
+*** Fix dircolors
+When I ~ls~, some folders are shown as blue on green background, which I cannot read in the slightest.
+This changes that to be a bit more readable.
+#+begin_src bash
+if [ -f "$HOME/.dircolors" ]; then
+    eval "$(dircolors ~/.dircolors)"
+else
+    filetxt='OTHER_WRITABLE 30;41 # dir that is other-writable (o+w) and not sticky'
+    echo "$filetxt" > "$HOME/.dircolors"
+    eval "$(dircolors ~/.dircolors)"
+fi
+#+end_src

@@ -4,6 +4,17 @@
 #+STARTUP: fold
 #+MACRO: path ~$PATH~
 
+* Contents :toc:
+- [[#path-additions-and-shell-variables][PATH Additions and Shell Variables]]
+- [[#aliases][Aliases]]
+  - [[#grep-aliases][Grep Aliases]]
+  - [[#ls-aliases][~ls~ Aliases]]
+  - [[#alert-alias][Alert Alias]]
+  - [[#custom-aliases][Custom Aliases]]
+- [[#shell-rc-files][Shell RC files]]
+  - [[#bash][Bash]]
+  - [[#zsh][zsh]]
+
 * PATH Additions and Shell Variables
 :PROPERTIES:
 :header-args: :exports none :tangle ~/.config/shell/path_additions :results neither
@@ -96,7 +107,7 @@ Exa alias to come later.
 # TODO install exa, look into if it affects dired
 # alias ls="exa -lh"
 #+end_src
-Surfshark alias to connect and disconnect.
+Surfshark aliases to connect and disconnect.
 #+begin_src bash
 alias vcon='sudo surfshark-vpn attack'
 alias vdis='sudo surfshark-vpn down'
@@ -230,6 +241,18 @@ unset __conda_setup
 *** Source the files with {{{path}}} additions
 #+begin_src bash
 source ~/.config/shell/path_additions
+#+end_src
+*** Fix dircolors
+When I ~ls~, some folders are shown as blue on green background, which I cannot read in the slightest.
+This changes that to be a bit more readable.
+#+begin_src bash
+if [ -f "$HOME/.dircolors" ]; then
+    eval "$(dircolors ~/.dircolors)"
+else
+    filetxt='OTHER_WRITABLE 30;41 # dir that is other-writable (o+w) and not sticky'
+    echo "$filetxt" > "$HOME/.dircolors"
+    eval "$(dircolors ~/.dircolors)"
+fi
 #+end_src
 ** zsh
 :PROPERTIES:

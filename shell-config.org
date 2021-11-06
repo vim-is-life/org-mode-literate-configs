@@ -296,6 +296,30 @@ autoload -U colors && colors        # Load colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b\n"
 #+end_src
 
+We enable checking for changes, repo changes, and set the format of ~vcs_info~.
+#+begin_src bash
+# Enable checking for (un)staged changes, enabling use of %u and %c
+zstyle ':vcs_info:*' check-for-changes true
+# Set custom strings for an unstaged vcs repo changes (*) and staged changes (+)
+zstyle ':vcs_info:*' unstagedstr ' *'
+zstyle ':vcs_info:*' stagedstr ' +'
+# Set the format of the Git information for vcs_info
+zstyle ':vcs_info:git:*' formats       '(git: %b%u%c)'
+zstyle ':vcs_info:git:*' actionformats '(git: %b|%a%u%c)'
+#+end_src
+
+Setup the default colorful prompt, and then add vcs info.
+#+begin_src bash
+PS1="%B%{$fg[green]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~"
+PS1="${PS1} %F{red}${vcs_info_msg_0_}%f"
+PS1="${PS1}%{$fg[green]%}]%{$reset_color%}"
+#+end_src
+
+Put the cash sign on a new line so prompt isn't crowded.
+#+begin_src bash
+NEWLINE=$'\n'
+PS1="${PS1}${NEWLINE}$%b "
+#+end_src
 *** Fix dircolors
 When I ~ls~, some folders are shown as blue on green background, which I cannot read in the slightest.
 This changes that to be a bit more readable.

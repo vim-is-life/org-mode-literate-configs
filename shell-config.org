@@ -117,7 +117,7 @@ alias vmult='sudo surfshark-vpn multi'
 #+end_src
 Alias to download a template for a .gitignore file.
 #+begin_src bash
-alias mkgi='curl -#Lo .gitignore https://gitignore.io/api/linux,windows,vim,emacs,java,python,julia,haskell,intellij,eclipse'
+alias mkgi='curl -Lo .gitignore https://gitignore.io/api/linux,windows,vim,emacs,java,python,julia,haskell,intellij,eclipse'
 #+end_src
 * Shell RC files
 ** Bash
@@ -292,7 +292,7 @@ neofetch
 #+end_src
 *** Set prompt
 #+begin_src bash
-autoload -U colors && colors	# Load colors
+autoload -U colors && colors        # Load colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 #+end_src
 

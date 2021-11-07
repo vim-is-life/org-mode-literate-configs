@@ -314,3 +314,7 @@ else
     eval "$(dircolors ~/.dircolors)"
 fi
 #+end_src
+*** Specify Ledger file
+#+begin_src bash
+export LEDGER_FILE="$HOME/finance/2021.journal"
+#+end_src

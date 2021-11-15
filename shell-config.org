@@ -7,6 +7,7 @@
 * Contents :toc:
 - [[#path-additions-and-shell-variables][PATH Additions and Shell Variables]]
 - [[#aliases][Aliases]]
+  - [[#alias-sudo-to-doas][Alias ~sudo~ to ~doas~]]
   - [[#grep-aliases][Grep Aliases]]
   - [[#ls-aliases][~ls~ Aliases]]
   - [[#alert-alias][Alert Alias]]
@@ -63,6 +64,10 @@ export MPD_PORT="6601"
 :PROPERTIES:
 :header-args: :exports none :tangle ~/.config/shell/bash_and_zsh_aliases :results neither
 :END:
+** Alias ~sudo~ to ~doas~
+#+begin_src bash
+alias sudo='doas'
+#+end_src
 ** Grep Aliases
 #+begin_src bash
 #!/usr/bin/env bash
@@ -117,7 +122,7 @@ alias vmult='sudo surfshark-vpn multi'
 #+end_src
 Alias to download a template for a .gitignore file.
 #+begin_src bash
-alias mkgi='curl -Lo .gitignore https://gitignore.io/api/linux,windows,vim,emacs,java,python,julia,haskell,intellij,eclipse'
+alias mkgi='curl -Lo .gitignore https://gitignore.io/api/vim,java,julia,linux,latex,emacs,python,windows,haskell,eclipse,intellij,tex,text'
 #+end_src
 * Shell RC files
 ** Bash

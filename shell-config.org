@@ -124,6 +124,13 @@ Alias to download a template for a .gitignore file.
 #+begin_src bash
 alias mkgi='curl -Lo .gitignore https://gitignore.io/api/vim,java,julia,linux,latex,emacs,python,windows,haskell,eclipse,intellij,tex,text'
 #+end_src
+Aliases to use rfkill utility to turn off and on wifi and bluetooth.
+#+begin_src bash
+alias wdown='rfkill block wifi'
+alias wup='rfkill unblock wifi'
+alias bdown='rfkill block bluetooth'
+alias bup='rfkill unblock bluetooth'
+#+end_src
 * Shell RC files
 ** Bash
 :PROPERTIES:

@@ -74,7 +74,7 @@ export XDG_DATA_DIRS="$XDG_DATA_DIRS:/home/shark/.local/share/flatpak/exports/sh
 
 Adding homebrew stuff to path.
 #+begin_src bash
-PATH="$PATH:$HOME/.linuxbrew/bin/brew"
+PATH="$PATH:$HOME/.linuxbrew/bin/"
 #+end_src
 * Aliases
 :PROPERTIES:
@@ -123,11 +123,13 @@ alias c='clear'
 alias up='sudo apt-fast update'
 alias ug='sudo apt-fast upgrade'
 #+end_src
+
 Exa alias to come later.
 #+begin_src bash
 # TODO install exa, look into if it affects dired
 # alias ls="exa -lh"
 #+end_src
+
 Surfshark aliases to connect and disconnect.
 #+begin_src bash
 alias vcon='sudo surfshark-vpn attack'
@@ -136,16 +138,26 @@ alias vstat='sudo surfshark-vpn status'
 alias vpn='sudo surfshark-vpn'
 alias vmult='sudo surfshark-vpn multi'
 #+end_src
+
 Alias to download a template for a .gitignore file.
 #+begin_src bash
 alias mkgi='curl -Lo .gitignore https://gitignore.io/api/vim,java,julia,linux,latex,emacs,python,windows,haskell,eclipse,intellij,tex,text'
 #+end_src
+
 Aliases to use rfkill utility to turn off and on wifi and bluetooth.
 #+begin_src bash
 alias wdown='rfkill block wifi && vdis'
 alias wup='rfkill unblock wifi && sleep 4 && vcon'
 alias bdown='rfkill block bluetooth'
 alias bup='rfkill unblock bluetooth'
+#+end_src
+
+Aliases for getting org-mode templates
+#+begin_src bash
+alias getmla='get-org-template mla'
+alias getgen='get-org-template gen'
+alias gethist='get-org-template hist'
+alias getsci='get-org-template sci'
 #+end_src
 * Shell RC files
 ** Bash

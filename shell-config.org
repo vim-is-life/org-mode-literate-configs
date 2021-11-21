@@ -60,6 +60,11 @@ MPD configuration environmental variables.
 export MPD_HOST="localhost"
 export MPD_PORT="6601"
 #+end_src
+
+Location of my custom scripts.
+#+begin_src bash
+export PATH="$PATH:$HOME/.local/bin/scripts"
+#+end_src
 * Aliases
 :PROPERTIES:
 :header-args: :exports none :tangle ~/.config/shell/bash_and_zsh_aliases :results neither
@@ -126,8 +131,8 @@ alias mkgi='curl -Lo .gitignore https://gitignore.io/api/vim,java,julia,linux,la
 #+end_src
 Aliases to use rfkill utility to turn off and on wifi and bluetooth.
 #+begin_src bash
-alias wdown='rfkill block wifi'
-alias wup='rfkill unblock wifi'
+alias wdown='rfkill block wifi && vdis'
+alias wup='rfkill unblock wifi && sleep 4 && vcon'
 alias bdown='rfkill block bluetooth'
 alias bup='rfkill unblock bluetooth'
 #+end_src

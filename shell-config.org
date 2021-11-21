@@ -63,7 +63,18 @@ export MPD_PORT="6601"
 
 Location of my custom scripts.
 #+begin_src bash
-export PATH="$PATH:$HOME/.local/bin/scripts"
+export PATH="$HOME/.local/bin/scripts:$PATH"
+#+end_src
+
+Adding flatpak dirs to XDG_DATA_DIRS.
+#+begin_src bash
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/var/lib/flatpak/exports/share"
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/home/shark/.local/share/flatpak/exports/share"
+#+end_src
+
+Adding homebrew stuff to path.
+#+begin_src bash
+PATH="$PATH:$HOME/.linuxbrew/bin/brew"
 #+end_src
 * Aliases
 :PROPERTIES:

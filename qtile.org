@@ -5,6 +5,7 @@
 
 * Contents :TOC:
 - [[#license][License]]
+- [[#resources][Resources]]
 - [[#imports][Imports]]
 - [[#setting-keys][Setting Keys]]
   - [[#keys-to-switch-between-windows][Keys to switch between windows.]]
@@ -48,6 +49,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 #+end_example
+* Resources
+Qtile has great documentation, see it [[https://docs.qtile.org/en/latest][here]].
 * Imports
 #+begin_src python
 ### FILE AUTOMATICALLY TANGLED FROM ~/.config/org-mode-literate-configs/qtile.org ###
@@ -185,9 +188,14 @@ for i in groups:
     ])
 #+end_src
 * Layouts
+These are the available layouts by default.
 #+begin_src python
 layouts = [
-    layout.Columns(border_focus_stack=['#d75f5f', '#8f3d3d'], border_width=4),
+    layout.Columns(
+        border_focus_stack=['#d75f5f', '#8f3d3d'],
+        border_width=4,
+        margin=10
+    ),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),

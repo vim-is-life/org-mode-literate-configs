@@ -36,8 +36,8 @@ export NVIM_CONF_DIR="$HOME/.config/"
 
 Environmental variables for java 17.
 #+begin_src bash
-export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
-export PATH="$PATH:$JAVA_HOME/bin"
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+export PATH="$JAVA_HOME/bin:$PATH"
 #+end_src
 
 Add the emacs dir with doom commands to {{{path}}}.
@@ -76,13 +76,18 @@ Adding homebrew stuff to path.
 #+begin_src bash
 PATH="$PATH:$HOME/.linuxbrew/bin/"
 #+end_src
+
+[[https://github.com/pystardust/ytfzf][ytfzf]] configuration directory.
+#+begin_src bash
+YTFZF_CONFIG_DIR="$HOME/.config/ytfzf"
+#+end_src
 * Aliases
 :PROPERTIES:
 :header-args: :exports none :tangle ~/.config/shell/bash_and_zsh_aliases :results neither
 :END:
 ** Alias ~sudo~ to ~doas~
 #+begin_src bash
-alias sudo='doas'
+# alias sudo='doas'
 #+end_src
 ** Grep Aliases
 #+begin_src bash
@@ -104,9 +109,9 @@ fi
 
 ** ~ls~ Aliases
 #+begin_src bash
-alias l='ls -CF'
-alias la='ls -A'
-alias ll='ls -alF'
+# alias l='ls -CF'
+# alias la='ls -A'
+# alias ll='ls -alF'
 #+end_src
 
 ** Alert Alias
@@ -126,8 +131,7 @@ alias ug='sudo apt-fast upgrade'
 
 Exa alias to come later.
 #+begin_src bash
-# TODO install exa, look into if it affects dired
-# alias ls="exa -lh"
+alias ls="exa -lh"
 #+end_src
 
 Surfshark aliases to connect and disconnect.
@@ -158,6 +162,11 @@ alias getmla='get-org-template mla'
 alias getgen='get-org-template gen'
 alias gethist='get-org-template hist'
 alias getsci='get-org-template sci'
+#+end_src
+
+Alias for managing dotfiles git repo.
+#+begin_src bash
+alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 #+end_src
 * Shell RC files
 ** Bash
@@ -357,4 +366,20 @@ fi
 *** Specify Ledger file
 #+begin_src bash
 export LEDGER_FILE="$HOME/finance/2021.journal"
+#+end_src
+
+*** Set vi mode when opening from st
+#+begin_src bash
+[ $TERM = "st-256color" ] && set -o vi
+#+end_src
+
+*** ~wal~ colorscheme
+This will import the colorscheme from ~wal~ asynchronously.
+#+begin_src shell
+(cat ~/.cache/wal/sequences &)
+#+end_src
+
+And this adds support for the TTY
+#+begin_src shell
+source ~/.cache/wal/colors-tty.sh
 #+end_src

@@ -943,3 +943,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/vim,java,julia,linux,latex,emacs,python,windows,haskell,eclipse,intellij,tex,text
+*.vtt

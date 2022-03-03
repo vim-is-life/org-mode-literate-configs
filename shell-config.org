@@ -36,7 +36,7 @@ export NVIM_CONF_DIR="$HOME/.config/"
 
 Environmental variables for java 17.
 #+begin_src bash
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+export JAVA_HOME="/lib/jvm/java-11-openjdk"
 export PATH="$JAVA_HOME/bin:$PATH"
 #+end_src
 
@@ -80,6 +80,29 @@ PATH="$PATH:$HOME/.linuxbrew/bin/"
 [[https://github.com/pystardust/ytfzf][ytfzf]] configuration directory.
 #+begin_src bash
 YTFZF_CONFIG_DIR="$HOME/.config/ytfzf"
+#+end_src
+
+Setting editor.
+#+begin_src shell
+# export EDITOR="nvim"
+export EDITOR='emacsclient -c -a "emacs"'
+export EDITOR='emacsclient -c -a "emacs"'
+#+end_src
+
+Sourcing a file with secrets.
+#+begin_src shell
+. "$HOME/.secret-vars"
+#+end_src
+
+Fixing XDG_DATA_DIRS because it got screwed up somewhere.
+#+begin_src shell
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/usr/share"
+#+end_src
+
+Be dark, Calibre. Please.
+#+begin_src shell
+export CALIBRE_USE_DARK_PALETTE=1
+export CALIBRE_USE_SYSTEM_THEME=1
 #+end_src
 * Aliases
 :PROPERTIES:
@@ -162,11 +185,110 @@ alias getmla='get-org-template mla'
 alias getgen='get-org-template gen'
 alias gethist='get-org-template hist'
 alias getsci='get-org-template sci'
+alias getpres='get-org-template pres'
 #+end_src
 
 Alias for managing dotfiles git repo.
 #+begin_src bash
 alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+#+end_src
+
+Alias for starting different librewolf profiles.
+#+begin_src bash
+alias wbro='librewolf -p work'
+alias hbro='librewolf -p home'
+alias tbro='librewolf -p throwaway'
+#+end_src
+
+Devour aliases.
+#+begin_src shell
+alias dsxiv='devour sxiv'
+alias dzath='devour zathura'
+alias dmpv='devour mpv'
+#+end_src
+
+Aliases to allow typos.
+#+begin_src shell
+alias cd..='cd ..'
+alias pdw='pwd'
+alias udpate='sudo pacman -Syyu'
+alias upate='sudo pacman -Syyu'
+alias updte='sudo pacman -Syyu'
+alias updqte='sudo pacman -Syyu'
+alias upqll='paru -Syu --noconfirm'
+alias upal='paru -Syu --noconfirm'
+#+end_src
+
+Pacman aliases.
+#+begin_src shell
+alias pacman='sudo pacman --color auto'
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+#+end_src
+
+Alias to update grub.
+#+begin_src shell
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+#+end_src
+
+yt-dlp aliases.
+#+begin_src shell
+alias yta-aac='yt-dlp --extract-audio --audio-format aac '
+alias yta-best='yt-dlp --extract-audio --audio-format best '
+alias yta-flac='yt-dlp --extract-audio --audio-format flac '
+alias yta-mp3='yt-dlp --extract-audio --audio-format mp3 '
+alias ytv-best="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 "
+#+end_src
+
+Aliases to check network information.
+#+begin_src shell
+alias chkip='curl https://ipleak.net/json/'
+#+end_src
+
+Emacs aliases.
+#+begin_src shell
+alias em='/usr/bin/emacs -nw'
+alias emacs='devour emacsclient -c -a emacs'
+#+end_src
+
+Alias to get my openvpn credentials.
+#+begin_src shell
+alias getovpn='bw list items --search openvpn | jq ".[].notes" | xargs printf'
+#+end_src
+
+These are aliases to get my passwords and/or logins from bitwarden-cli.
+#+begin_src shell
+alias getpsgpg='bw list items --search gpg | jq ".[].login.password"'
+alias getpsjou='bw list items --search journal | jq ".[].login.password"'
+alias getpssch='bw list items --search passphrase | jq ".[].login.password"'
+#+end_src
+
+These are aliases to make having my ledger journal encrypted work.
+#+begin_src shell
+alias eled="gpg2 --decrypt -q --for-your-eyes-only --no-tty -d $LEDGER_FILE | ledger -f -"
+alias ehled="gpg2 --decrypt -q --for-your-eyes-only --no-tty -d $LEDGER_FILE | hledger -f -"
+#+end_src
+
+Below are aliases to help me with connecting with adb over the network while at home.
+They're mean so that you type the port number right after them.
+#+begin_src shell
+alias hconphone='resolvectl query phone | grep phone | cut -d" " -f2 | xargs -I{} adb connect {}'
+alias hcontablet='resolvectl query tablet | grep tablet | cut -d" " -f2 | xargs -I{} adb connect {}'
+alias hconfiretv='resolvectl query firetv | grep firetv | cut -d" " -f2 | xargs -I{} adb connect {}'
+#+end_src
+
+Alias copied from skel to fix invalid key issues.
+#+begin_src shell
+alias fix-permissions="sudo chown -R $USER:$USER ~/.config ~/.local"
+alias keyfix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
+alias key-fix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
+alias keys-fix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
+alias fixkey="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
+alias fixkeys="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
+alias fix-key="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
+alias fix-keys="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
+alias fix-sddm-config="/usr/local/bin/arcolinux-fix-sddm-config"
+alias fix-pacman-conf="/usr/local/bin/arcolinux-fix-pacman-conf"
+alias fix-pacman-keyserver="/usr/local/bin/arcolinux-fix-pacman-gpg-conf"
 #+end_src
 * Shell RC files
 ** Bash
@@ -195,8 +317,11 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+# HISTSIZE=1000
+# HISTFILESIZE=2000
+HISTSIZE=0
+HISTFILESIZE=0
+unset $HISTFILE
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -365,12 +490,12 @@ fi
 #+end_src
 *** Specify Ledger file
 #+begin_src bash
-export LEDGER_FILE="$HOME/finance/2021.journal"
+export LEDGER_FILE="$HOME/finance/$(date '+%Y').journal.gpg"
 #+end_src
 
 *** Set vi mode when opening from st
 #+begin_src bash
-[ $TERM = "st-256color" ] && set -o vi
+# [ $TERM = "st-256color" ] && set -o vi
 #+end_src
 
 *** ~wal~ colorscheme
@@ -382,4 +507,9 @@ This will import the colorscheme from ~wal~ asynchronously.
 And this adds support for the TTY
 #+begin_src shell
 source ~/.cache/wal/colors-tty.sh
+#+end_src
+
+*** zsh syntax highlighting
+#+begin_src shell
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #+end_src

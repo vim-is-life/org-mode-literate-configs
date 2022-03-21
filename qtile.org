@@ -62,11 +62,11 @@ from libqtile.lazy import lazy
 from libqtile.extension import DmenuRun
 #+end_src
 * Setting Keys
-I set the mod key to be "mod4" here, which is the Super or "Windows" key.  I
-also set my terminal to be ~st~ (see [[https://st.suckless.org/]])
+I set the mod key to be "mod4" here, which is the Super or "Windows" key.
+# I also set my terminal to be ~st~ (see [[https://st.suckless.org/]]).
 #+begin_src python
 mod = "mod4"
-terminal = "alacritty"
+terminal = "urxvt"
 #+end_src
 
 Here, I set keybindings. See [[https://docs.qtile.org/en/latest/manual/config/lazy.html][this link]] for a list of commands that can be bound
@@ -150,12 +150,14 @@ displayed, but with multiple stack panes.
 |------------+------------------------------|
 | ~Mod RET~    | Launch terminal              |
 | ~Mod d~      | Spawn a command using dmenu. |
+# | ~Mod o~      | Spawn emacsclient.           |
 #+begin_src python
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "d", lazy.run_extension(DmenuRun(
         demnu_prompt=">",
         )),
         desc="Spawn a command using dmenu."),
+    # Key([mod], "o", lazy.spawn("emacsclient -n -c", desc="Open emacsclient frame.")),
 #+end_src
 
 ** Keys to do with Qtile.
@@ -191,20 +193,28 @@ for i in groups:
 These are the available layouts by default.
 #+begin_src python
 layouts = [
+    layout.Bsp(
+        border_focus_stack=['#d75f5f', '#8f3d3d'],
+        border_width=5,
+        margin=5
+    ),
     layout.Columns(
         border_focus_stack=['#d75f5f', '#8f3d3d'],
-        border_width=4,
-        margin=10
+        border_width=5,
+        margin=5
     ),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
-    layout.Bsp(),
     layout.Matrix(),
-    layout.MonadTall(),
+    layout.MonadTall(
+        border_focus_stack=['#d75f5f', '#8f3d3d'],
+        border_width=5,
+        margin=5
+    ),
     layout.MonadWide(),
     # layout.RatioTile(),
-    layout.Tile(),
+    # layout.Tile(),
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
@@ -220,30 +230,22 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
                 widget.Systray(),
                 widget.BatteryIcon(),
                 widget.Clipboard(),
-                widget.Bluetooth(),
-                widget.Wlan(),
                 widget.QuickExit(),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
             ],
             24,
             border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
     ),
 ]
 
 widget_defaults = dict(
     font='sans',
-    fontsize=12,
+    fontsize=13,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()

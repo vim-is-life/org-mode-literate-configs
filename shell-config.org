@@ -63,7 +63,9 @@ export MPD_PORT="6601"
 
 Location of my custom scripts.
 #+begin_src bash
-export PATH="$HOME/.local/bin/scripts:$PATH"
+fd -td -d1 . "$HOME/.local/bin/scripts" | while read line; do
+    export PATH="$line:$PATH"
+done
 #+end_src
 
 Adding flatpak dirs to XDG_DATA_DIRS.
@@ -103,6 +105,11 @@ Be dark, Calibre. Please.
 #+begin_src shell
 export CALIBRE_USE_DARK_PALETTE=1
 export CALIBRE_USE_SYSTEM_THEME=1
+#+end_src
+
+For GZDoom.
+#+begin_src shell
+export DOOMWADDIR='/run/media/shark/Elements/Games/PC/DOOM-WADs'
 #+end_src
 * Aliases
 :PROPERTIES:
@@ -168,7 +175,7 @@ alias vmult='sudo surfshark-vpn multi'
 
 Alias to download a template for a .gitignore file.
 #+begin_src bash
-alias mkgi='curl -Lo .gitignore https://gitignore.io/api/vim,java,julia,linux,latex,emacs,python,windows,haskell,eclipse,intellij,tex,text'
+alias mkgi='curl -Lo .gitignore https://gitignore.io/api/eclipse,emacs,haskell,intellij,java,julia,kotlin,latex,linux,php,python,tex,text,vim,windows'
 #+end_src
 
 Aliases to use rfkill utility to turn off and on wifi and bluetooth.
